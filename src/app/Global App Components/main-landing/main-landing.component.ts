@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BackendConnectionUrls } from '../../../constants/appUrls';
 import { AllModuleLoadService } from '../../Global App Services/all-module-load.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-landing',
@@ -10,10 +11,17 @@ import { AllModuleLoadService } from '../../Global App Services/all-module-load.
 })
 export class MainLandingComponent implements OnInit {
   public modulesData: any[] | undefined;
-  constructor(private allModuleService: AllModuleLoadService) {}
+  constructor(
+    private allModuleService: AllModuleLoadService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.funcGetAllModules();
+  }
+
+  navigateToRoute(link: any) {
+    this.router.navigate([link]);
   }
 
   funcGetAllModules() {

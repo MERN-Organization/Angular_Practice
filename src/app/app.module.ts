@@ -7,9 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainLandingComponent } from './Global App Components/main-landing/main-landing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IoLandingComponent } from './Modules/io/components/io-landing/io-landing.component';
+import { HomeButtonComponent } from './Global App Components/home-button/home-button.component';
 
 @NgModule({
-  declarations: [AppComponent, MainLandingComponent],
+  declarations: [AppComponent, MainLandingComponent, HomeButtonComponent],
   imports: [BrowserModule, NgbModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
