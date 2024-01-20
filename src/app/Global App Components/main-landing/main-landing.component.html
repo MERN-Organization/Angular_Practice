@@ -1,0 +1,18 @@
+<!-- landing.component.html -->
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let moduleIter of modulesData">
+      <div class="card custom-card">
+        <div class="card-body">
+          <a routerLink="{{ moduleIter.link }}">
+            <h5 class="card-title">{{ moduleIter.title }}</h5></a
+          >
+          <p class="card-text">
+           {{moduleIter.title}} Description
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

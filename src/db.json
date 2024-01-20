@@ -1,0 +1,14 @@
+{
+    "modules": [
+      { "id": "1", "title": "Observables", "link": "observables" },
+      { "id": "2", "title": "IO" , "link": "io" },
+      { "id": "3", "title": "Directives" , "link": "directives" },
+      { "id": "4", "title": "Change Detection" , "link": "changeDetection" },
+      { "id": "5", "title": "Life Cycle" , "link": "lifeCycle" },
+      { "id": "6", "title": "Ng Template" , "link": "ngTemplate" },
+      { "id": "7", "title": "Ng Content" , "link": "ngContent" },
+      { "id": "8", "title": "Services" , "link": "services" },
+      { "id": "9", "title": "http" , "link": "http" },
+      { "id": "10", "title": "CRUD" , "link": "crud" }
+    ]
+  }
