@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudListingComponent } from './crud-listing.component';
+import { CrudTodoListComponent } from './crud-todo-list.component';
 
-describe('CrudListingComponent', () => {
-  let component: CrudListingComponent;
-  let fixture: ComponentFixture<CrudListingComponent>;
+describe('CrudTodoListComponent', () => {
+  let component: CrudTodoListComponent;
+  let fixture: ComponentFixture<CrudTodoListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CrudListingComponent]
+      declarations: [CrudTodoListComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CrudListingComponent);
+    fixture = TestBed.createComponent(CrudTodoListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

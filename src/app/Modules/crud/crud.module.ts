@@ -6,9 +6,14 @@ import { CrudLandingComponent } from './components/crud-landing/crud-landing.com
 import { CrudHeaderComponent } from './components/crud-header/crud-header.component';
 import { CrudFooterComponent } from './components/crud-footer/crud-footer.component';
 import { CrudSidebarComponent } from './components/crud-sidebar/crud-sidebar.component';
-import { CrudListingComponent } from './components/crud-listing/crud-listing.component';
 import { CrudAboutComponent } from './components/crud-about/crud-about.component';
 import { CrudLayoutComponent } from './components/crud-layout/crud-layout.component';
+import { CrudTodoFormComponent } from './components/Crud Form Components/crud-todo-form/crud-todo-form.component';
+import { CrudEmployeeFormComponent } from './components/Crud Form Components/crud-employee-form/crud-employee-form.component';
+import { CrudEmployeeListComponent } from './components/Crud Listing Components/crud-employee-list/crud-employee-list.component';
+import { CrudTodoListComponent } from './components/Crud Listing Components/crud-todo-list/crud-todo-list.component';
+import { CrudTodoLandingComponent } from './components/Crud Landing Components/crud-todo-landing/crud-todo-landing.component';
+import { CrudEmployeeLandingComponent } from './components/Crud Landing Components/crud-employee-landing/crud-employee-landing.component';
 
 
 @NgModule({
@@ -17,9 +22,14 @@ import { CrudLayoutComponent } from './components/crud-layout/crud-layout.compon
     CrudHeaderComponent,
     CrudFooterComponent,
     CrudSidebarComponent,
-    CrudListingComponent,
     CrudAboutComponent,
-    CrudLayoutComponent
+    CrudLayoutComponent,
+    CrudTodoFormComponent,
+    CrudEmployeeFormComponent,
+    CrudEmployeeListComponent,
+    CrudTodoListComponent,
+    CrudTodoLandingComponent,
+    CrudEmployeeLandingComponent,
   ],
   imports: [
     CommonModule,
