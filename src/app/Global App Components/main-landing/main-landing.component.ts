@@ -20,8 +20,10 @@ export class MainLandingComponent implements OnInit {
     this.funcGetAllModules();
   }
 
-  navigateToRoute(link: any) {
+  navigateToRoute(link: any , moduleId : any) {
+    this.allModuleService.getAndStoreCurrenModule(moduleId)
     this.router.navigate([link]);
+
   }
 
   funcGetAllModules() {

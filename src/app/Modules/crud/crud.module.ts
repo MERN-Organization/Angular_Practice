@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CrudRoutingModule } from './crud-routing.module';
 import { CrudLandingComponent } from './components/crud-landing/crud-landing.component';
@@ -14,7 +15,6 @@ import { CrudEmployeeListComponent } from './components/Crud Listing Components/
 import { CrudTodoListComponent } from './components/Crud Listing Components/crud-todo-list/crud-todo-list.component';
 import { CrudTodoLandingComponent } from './components/Crud Landing Components/crud-todo-landing/crud-todo-landing.component';
 import { CrudEmployeeLandingComponent } from './components/Crud Landing Components/crud-employee-landing/crud-employee-landing.component';
-
 
 @NgModule({
   declarations: [
@@ -31,9 +31,6 @@ import { CrudEmployeeLandingComponent } from './components/Crud Landing Componen
     CrudTodoLandingComponent,
     CrudEmployeeLandingComponent,
   ],
-  imports: [
-    CommonModule,
-    CrudRoutingModule
-  ]
+  imports: [CommonModule, CrudRoutingModule, FormsModule],
 })
-export class CrudModule { }
+export class CrudModule {}

@@ -3,7 +3,7 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-3 mb-4" *ngFor="let moduleIter of modulesData">
-      <div class="card custom-card" (click)="navigateToRoute(moduleIter.link)">
+      <div class="card custom-card" (click)="navigateToRoute(moduleIter.link, moduleIter.id)">
         <div class="card-body">
           <h5 class="card-title">{{ moduleIter.title }}</h5>
           <p class="card-text">{{ moduleIter.title }} Description</p>
