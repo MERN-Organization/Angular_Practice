@@ -16,7 +16,7 @@ export class AllModuleLoadService {
     );
   }
 
-  getAndStoreCurrenModule(moduleId: any): void {
+  getAndStoreCurrentModule(moduleId: any): void {
     this.http
       .get<any>(
         `${BackendConnectionUrls.baseUrl}/${BackendConnectionUrls.modules}/${moduleId}`
@@ -34,7 +34,15 @@ export class AllModuleLoadService {
       });
   }
 
+  setCurrentModuleData(updatedData: any) {
+    this.currentModuleData = updatedData;
+  }
+
   getCurrentModuleData() {
     return this.currentModuleData;
+  }
+
+  getCurrentModuleId() {
+    return this.currentModuleData.id;
   }
 }

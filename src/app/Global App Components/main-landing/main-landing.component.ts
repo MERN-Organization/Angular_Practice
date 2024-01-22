@@ -21,7 +21,7 @@ export class MainLandingComponent implements OnInit {
   }
 
   navigateToRoute(link: any , moduleId : any) {
-    this.allModuleService.getAndStoreCurrenModule(moduleId)
+    this.allModuleService.getAndStoreCurrentModule(moduleId)
     this.router.navigate([link]);
 
   }
