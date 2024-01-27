@@ -10,18 +10,32 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let todoListIter of currentModuleData?.formsData">
-        <td>{{todoListIter.todoTitle}}</td>
-        <td>{{todoListIter.todoDescription}}</td>
-        <td>{{todoListIter.createdDate}}</td>
-        <td>{{todoListIter.lastEditedDate}}</td>
+      <tr *ngFor="let todoListIter of (currentModuleData$ | async)?.formsData">
+        <td>{{ todoListIter.todoTitle }}</td>
+        <td>{{ todoListIter.todoDescription }}</td>
+        <td>{{ todoListIter.createdDate }}</td>
+        <td>{{ todoListIter.lastEditedDate }}</td>
         <td>
-          <button class="btn btn-primary btn-sm">Edit</button>
-          <button class="btn btn-danger btn-sm">Delete</button>
-          <button class="btn btn-success btn-sm">Complete</button>
+          <button
+            class="btn btn-primary btn-sm"
+            (click)="editItem(todoListIter)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteItem(todoListIter)"
+          >
+            Delete
+          </button>
+          <button
+            class="btn btn-success btn-sm"
+            (click)="completeItem(todoListIter)"
+          >
+            Complete
+          </button>
         </td>
       </tr>
-      
     </tbody>
   </table>
 </div>

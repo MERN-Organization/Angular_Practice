@@ -14,7 +14,26 @@ export class TodoListService {
   ) {}
   getCurrentListDataLength() {
     const currentModuleData = this.globalModuleService.getCurrentModuleData();
-    return currentModuleData.formsData.length;
+    if (currentModuleData?.formsData?.length) {
+      return currentModuleData.formsData.length;
+    } else {
+      return 0;
+    }
+  }
+
+  generateEditTodoData(formData: any) {
+    const currentModuleData = this.globalModuleService.getCurrentModuleData();
+    const newEditedData = currentModuleData?.formsData.map((iter: any) => {
+      if (iter.id === formData.id) {
+        return {
+          ...iter,
+          ...formData,
+        };
+      }
+      return iter;
+    });
+    currentModuleData.formsData = newEditedData;
+    this.postTodoData(currentModuleData);
   }
 
   generatePostTodoData(formData: any) {
@@ -22,12 +41,45 @@ export class TodoListService {
     const deepCloneCurrentModuleData = JSON.parse(
       JSON.stringify(currentModuleData)
     );
-    const newFormsData = [...deepCloneCurrentModuleData.formsData, formData];
+    const newFormsData = [
+      ...(deepCloneCurrentModuleData?.formsData || []),
+      formData,
+    ];
     deepCloneCurrentModuleData.formsData = newFormsData;
     this.postTodoData(deepCloneCurrentModuleData);
   }
 
   postTodoData(formData: any) {
+    this.http
+      .put(
+        `${BackendConnectionUrls.baseUrl}/${
+          BackendConnectionUrls.modules
+        }/${this.globalModuleService.getCurrentModuleId()}`,
+        formData
+      )
+      .subscribe({
+        next: (response) => {
+          this.globalModuleService.setCurrentModuleData(response);
+        },
+        error: (error: Error) => {
+          console.error('Error Generated While Getting Modules Data', error);
+        },
+        complete: () => {
+          console.info('Current modules Data Updated');
+        },
+      });
+  }
+
+  generateDeleteTodoData(toBeDeletedItem: any) {
+    const currentModuleData = this.globalModuleService.getCurrentModuleData();
+    const updatedFormsData = currentModuleData.formsData.filter(
+      (iter: any) => iter.id !== toBeDeletedItem
+    );
+    currentModuleData.formsData = updatedFormsData;
+    this.deleteTodoData(currentModuleData);
+  }
+
+  deleteTodoData(formData: any) {
     this.http
       .put(
         `${BackendConnectionUrls.baseUrl}/${

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AllModuleLoadService } from '../../../../../Global App Services/all-module-load.service';
+import { Observable } from 'rxjs';
+import { TodoListService } from '../../../services/todo-list.service';
 
 @Component({
   selector: 'app-crud-todo-list',
@@ -7,11 +9,33 @@ import { AllModuleLoadService } from '../../../../../Global App Services/all-mod
   styleUrl: './crud-todo-list.component.css',
 })
 export class CrudTodoListComponent implements OnInit {
-  currentModuleData: any;
+  constructor(
+    private globalModuleLoadService: AllModuleLoadService,
+    private todoListServiceInstace: TodoListService
+  ) {}
 
-  constructor(private globalModuleLoadService: AllModuleLoadService) {}
+  @Output() sendDataToForm = new EventEmitter();
+
+  currentModuleData$: Observable<any> | undefined;
 
   ngOnInit(): void {
-    this.currentModuleData = this.globalModuleLoadService.getCurrentModuleData();
+    if (
+      Object.keys(this.globalModuleLoadService.getCurrentModuleData())
+        .length !== 0
+    ) {
+      this.currentModuleData$ = this.globalModuleLoadService.currentModuleData$;
+    } else {
+      // this.todoListServiceInstace.
+    }
   }
+
+  editItem(item: any) {
+    this.sendDataToForm.emit(item);
+  }
+
+  deleteItem(item: any) {
+    this.todoListServiceInstace.generateDeleteTodoData(item.id);
+  }
+
+  completeItem(item: any) {}
 }

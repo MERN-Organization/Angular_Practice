@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TodoListService } from '../../../services/todo-list.service';
 
 @Component({
@@ -6,17 +6,22 @@ import { TodoListService } from '../../../services/todo-list.service';
   templateUrl: './crud-todo-form.component.html',
   styleUrl: './crud-todo-form.component.css',
 })
-export class CrudTodoFormComponent {
+export class CrudTodoFormComponent implements OnChanges {
   constructor(private todoListService: TodoListService) {}
 
-  todoTitle: string = '';
-  todoDescription: string = '';
+  @Input() currentSelectFormData: any;
+
+  ngOnChanges(changes: SimpleChanges) {
+    
+    console.log('THis are changes', changes);
+  }
 
   async onSubmit(todoForm: any) {
     if (todoForm.form.status === 'VALID') {
       const newObject = await this.newObjectCreation(todoForm);
       this.todoListService.generatePostTodoData(newObject);
     }
+    todoForm.resetForm();
   }
 
   async newObjectCreation(formData: any) {

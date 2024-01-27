@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BackendConnectionUrls } from '../../constants/appUrls';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AllModuleLoadService {
   constructor(private http: HttpClient) {}
-  currentModuleData: any;
+  public currentModuleData$: any = new BehaviorSubject([]);
 
   getAllModules(): Observable<any[]> {
     return this.http.get<any[]>(
@@ -23,7 +23,7 @@ export class AllModuleLoadService {
       )
       .subscribe({
         next: (response) => {
-          this.currentModuleData = response;
+          this.currentModuleData$.next(response);
         },
         error: (error: Error) => {
           console.error('Error Generated While Getting Modules Data', error);
@@ -35,14 +35,19 @@ export class AllModuleLoadService {
   }
 
   setCurrentModuleData(updatedData: any) {
-    this.currentModuleData = updatedData;
+    this.currentModuleData$.next(updatedData);
   }
 
   getCurrentModuleData() {
-    return this.currentModuleData;
+    return this.currentModuleData$.getValue();
   }
 
   getCurrentModuleId() {
-    return this.currentModuleData.id;
+    return this.currentModuleData$.getValue().id;
+  }
+
+  getCurrentDate() {
+    const date = new Date();
+    return date.getDate() + '/' + date.getMonth()+1 + '/' + date.getFullYear();
   }
 }

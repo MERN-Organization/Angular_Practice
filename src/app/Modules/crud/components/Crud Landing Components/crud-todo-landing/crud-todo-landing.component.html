@@ -1,2 +1,8 @@
-<app-crud-todo-form></app-crud-todo-form>
-<app-crud-todo-list></app-crud-todo-list>
+<!-- <app-crud-todo-form [currentSelectFormData]="currentData"></app-crud-todo-form> -->
+<app-crud-todo-reactive-form
+  [currentSelectFormData]="currentData"
+></app-crud-todo-reactive-form>
+
+<app-crud-todo-list
+  (sendDataToForm)="sendDataToForm($event)"
+></app-crud-todo-list>
