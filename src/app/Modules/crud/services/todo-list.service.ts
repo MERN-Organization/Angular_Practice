@@ -70,13 +70,29 @@ export class TodoListService {
       });
   }
 
-  generateDeleteTodoData(toBeDeletedItem: any) {
+  generateDeleteTodoData(toBeDeletedItemId: any) {
     const currentModuleData = this.globalModuleService.getCurrentModuleData();
     const updatedFormsData = currentModuleData.formsData.filter(
-      (iter: any) => iter.id !== toBeDeletedItem
+      (iter: any) => iter.id !== toBeDeletedItemId
     );
     currentModuleData.formsData = updatedFormsData;
     this.deleteTodoData(currentModuleData);
+  }
+
+  generateCompleteTodoData(toBeCompletedItemId: any) {
+    const currentModuleData = this.globalModuleService.getCurrentModuleData();
+    const updatedFormsData = currentModuleData.formsData.map((iter: any) => {
+      if (iter.id === toBeCompletedItemId) {
+        return {
+          ...iter,
+          isCompleted: true,
+        };
+      } else {
+        return iter;
+      }
+    });
+    currentModuleData.formsData = updatedFormsData;
+    this.postTodoData(currentModuleData);
   }
 
   deleteTodoData(formData: any) {

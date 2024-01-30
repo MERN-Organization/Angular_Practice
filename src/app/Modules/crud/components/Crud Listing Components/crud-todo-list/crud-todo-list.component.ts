@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AllModuleLoadService } from '../../../../../Global App Services/all-module-load.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { TodoListService } from '../../../services/todo-list.service';
 
 @Component({
@@ -23,7 +23,19 @@ export class CrudTodoListComponent implements OnInit {
       Object.keys(this.globalModuleLoadService.getCurrentModuleData())
         .length !== 0
     ) {
-      this.currentModuleData$ = this.globalModuleLoadService.currentModuleData$;
+      this.currentModuleData$ =
+        this.globalModuleLoadService.currentModuleData$.pipe(
+          map((currentModuleData: any) => {
+            if (currentModuleData && currentModuleData.formsData) {
+              const filteredFormsData = currentModuleData.formsData.filter(
+                (formData: any) => formData.isCompleted === false
+              );
+              return { ...currentModuleData, formsData: filteredFormsData };
+            } else {
+              return currentModuleData;
+            }
+          })
+        );
     } else {
       // this.todoListServiceInstace.
     }
@@ -37,5 +49,7 @@ export class CrudTodoListComponent implements OnInit {
     this.todoListServiceInstace.generateDeleteTodoData(item.id);
   }
 
-  completeItem(item: any) {}
+  completeItem(item: any) {
+    this.todoListServiceInstace.generateCompleteTodoData(item.id);
+  }
 }
